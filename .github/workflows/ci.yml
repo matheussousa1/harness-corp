@@ -1,0 +1,55 @@
+# CI — os 5 gates. Ver docs/03-processo/pipeline.md
+# Este arquivo é o esqueleto; os passos são preenchidos por SPEC-000 / T-06.
+name: ci
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # TODO(SPEC-000 T-06): ruff check + eslint
+
+  types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # TODO(SPEC-000 T-06): mypy --strict + tsc --noEmit
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # TODO(SPEC-000 T-06): pytest + vitest
+
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # TODO(SPEC-000 T-04/T-06): validar openapi.yaml, regenerar tipos
+      #   e falhar se `git diff --exit-code` acusar diferença.
+
+  # Este job é o que diferencia o projeto de um CRUD.
+  # Ele existe ANTES da primeira feature, por decisão de SPEC-000.
+  security-invariants:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # TODO(SPEC-000 T-05): python scripts/security_invariants.py
+      #   Gate 1  nenhum padrão de chave de provider em apps/desktop/** nem no bundle
+      #           (sk-, sk-ant-, AIza, Bearer literal)
+      #   Gate 2  nenhum host de provider referenciado a partir do cliente
+      #           (api.anthropic.com, api.openai.com, generativelanguage.googleapis.com, ...)
+      #   Gate 3  nenhum fail-open: except/catch em policy|budget|credential que não
+      #           re-lança nem nega
+      #   Gate 4  (a partir de SPEC-002) toda rota de inferência passa pelo middleware
+      #           de política — teste enumera as rotas registradas
+      #   Gate 5  configuração do Electron endurecida
+      #           (contextIsolation/nodeIntegration/sandbox)

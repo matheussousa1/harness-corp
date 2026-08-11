@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: harness-corp — Control Plane
+  version: 0.1.0
+  description: |
+    Fonte da verdade do contrato entre desktop, painel admin e Control Plane.
+    Tipos TS e modelos Pydantic são GERADOS deste arquivo — nunca escritos à mão.
+    Mudou aqui? Rode `make contract`. O CI falha se houver diff não commitado.
+
+servers:
+  - url: https://control-plane.exemplo.local
+    description: servidor da empresa
+
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Liveness
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: { type: string, enum: [ok] }
+
+  # /v1/chat entra em SPEC-001. Definição completa na própria SPEC.
+
+components:
+  responses:
+    PolicyDenied:
+      description: Política nega, está ausente ou indisponível (fail-closed)
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ErrorEnvelope' }
+    BudgetExceeded:
+      description: Sem saldo de budget no escopo mais restritivo
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ErrorEnvelope' }
+    UpstreamUnavailable:
+      description: Todos os providers da cadeia falharam
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ErrorEnvelope' }
+
+  schemas:
+    ErrorEnvelope:
+      type: object
+      required: [code, message, retryable, request_id]
+      properties:
+        code:
+          type: string
+          enum:
+            - policy_denied
+            - policy_unavailable
+            - budget_exceeded
+            - upstream_error
+            - rate_limited
+            - invalid_request
+            - internal
+        message:   { type: string }
+        retryable: { type: boolean }
+        provider:  { type: string, nullable: true }
+        request_id:{ type: string }
+
+    Message:
+      type: object
+      required: [role, content]
+      properties:
+        role:    { type: string, enum: [system, user, assistant, tool] }
+        content: { type: string }
+
+  securitySchemes:
+    userSession:
+      type: http
+      scheme: bearer
+      description: |
+        Token de sessão do COLABORADOR. Nunca uma chave de provider.
+        Invariante 1 (docs/02-arquitetura/modelo-de-seguranca.md).
+
+security:
+  - userSession: []

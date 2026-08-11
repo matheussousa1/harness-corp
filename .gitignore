@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Node / Electron
+node_modules/
+dist/
+out/
+build/
+release/
+*.tsbuildinfo
+
+# Segredos — invariante 1: a chave nunca desce
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Dados locais
+*.sqlite
+*.sqlite3
+*.db
+data/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Métricas: os JSON de SPEC SÃO versionados (série histórica).
+# Só logs brutos ficam de fora.
+metrics/raw/
