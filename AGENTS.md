@@ -59,6 +59,12 @@ Se um requisito parecer exigir violar 1–5, **não implemente**: registre em
 
 Detalhamento: `docs/02-arquitetura/modelo-de-seguranca.md`.
 
+## Modelo de domínio
+
+`docs/02-arquitetura/modelo-de-dominio.md` define as entidades, relações e invariantes
+do sistema inteiro. Não invente entidade nem campo: se precisar de algo que não está
+lá, é mudança de domínio — atualize o documento na SPEC **antes** de implementar.
+
 ## Convenções de código
 
 - **Idioma:** docs, specs e stories em pt-BR. Código, identificadores, mensagens de

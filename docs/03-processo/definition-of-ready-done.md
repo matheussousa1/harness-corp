@@ -8,6 +8,7 @@
 - [ ] Requisitos não-funcionais com número (latência, limite, tamanho)
 - [ ] Invariantes de segurança tocadas listadas (ou "nenhuma", justificado)
 - [ ] Mudança de contrato (`openapi.yaml`) descrita, se houver
+- [ ] Entidade nova ou alterada refletida em `docs/02-arquitetura/modelo-de-dominio.md`
 - [ ] **Todo critério de aceite é verificável por comando ou teste**
 - [ ] Plano com arquivos a criar/alterar
 - [ ] Tasks fatiadas em ≤ 1 dia, com dependências marcadas

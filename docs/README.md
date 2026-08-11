@@ -10,6 +10,7 @@ Ordem de leitura para quem (ou o que) chega agora:
 | 4 | [`01-produto/personas.md`](01-produto/personas.md) | vai decidir prioridade |
 | 5 | [`02-arquitetura/visao-geral.md`](02-arquitetura/visao-geral.md) | vai mexer em código |
 | 6 | [`02-arquitetura/modelo-de-seguranca.md`](02-arquitetura/modelo-de-seguranca.md) | **sempre** — são as 5 invariantes |
+| 6b | [`02-arquitetura/modelo-de-dominio.md`](02-arquitetura/modelo-de-dominio.md) | vai criar entidade, tabela ou migração |
 | 7 | [`02-arquitetura/adr/`](02-arquitetura/adr/) | quer saber por que não foi feito do outro jeito |
 | 8 | [`03-processo/metodologia.md`](03-processo/metodologia.md) | vai criar uma SPEC ou implementar |
 | 9 | [`03-processo/definition-of-ready-done.md`](03-processo/definition-of-ready-done.md) | vai aprovar ou verificar algo |
