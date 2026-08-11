@@ -117,7 +117,7 @@ Práticas adotadas:
 - Estrutura de pastas previsível e rasa; nomes descritivos.
 - `CLAUDE.md` na raiz + `CLAUDE.md` por app: regras que o agente lê antes de agir.
 - Contratos antes de código (OpenAPI/JSON Schema) — o agente não precisa adivinhar.
-- Comandos de verificação de um passo só (`make check`) — agente consegue se
+- Comandos de verificação de um passo só (`just check`) — agente consegue se
   auto-verificar sem inventar o comando.
 
 ## 7. Fase 4 — métricas e otimização

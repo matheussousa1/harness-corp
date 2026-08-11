@@ -26,7 +26,7 @@ stateDiagram-v2
   Plano --> Tasks: /tasks
   Tasks --> Fila
   Fila --> Implement: pega próxima task pronta
-  Implement --> Verify: make check verde
+  Implement --> Verify: just check verde
   Implement --> NeedsAmendment: SPEC estava errada
   NeedsAmendment --> Spec
   Verify --> Fila: reprovado (máx. 2 retentativas)
@@ -44,7 +44,7 @@ stateDiagram-v2
 | Spec | agente `spec-writer` | ideia + docs de produto | `specs/SPEC-XXX.md` | Definition of Ready completo |
 | Plan | `spec-writer` + humano | SPEC | seção Plano | humano aprova |
 | Tasks | `spec-writer` | Plano | seção Tasks | toda task ≤ 1 dia e verificável |
-| Implement | `implementor` (1..N) | uma task | diff + testes | `make check` verde |
+| Implement | `implementor` (1..N) | uma task | diff + testes | `just check` verde |
 | Verify | `verifier` | task + diff | relatório com evidência | todos os critérios com prova |
 | Measure | script | logs da execução | `metrics/SPEC-XXX.json` | — |
 

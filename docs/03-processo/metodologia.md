@@ -52,12 +52,12 @@ Um agente Implementor por task. Regras:
 - Lê a SPEC e **só** a SPEC + os arquivos da task. Sem "melhorar" o resto.
 - Escreve teste junto, não depois.
 - Se descobrir que a SPEC está errada, **para** e propõe emenda. Não improvisa.
-- Roda `make check` antes de dizer que terminou.
+- Roda `just check` antes de dizer que terminou.
 
 ### 5. VERIFY — *o gate*
 Um agente Verifier, **diferente** de quem implementou. Confere:
 - cada critério de aceite, um por um, com evidência (saída de comando)
-- `make check` verde
+- `just check` verde
 - invariantes de segurança não violadas
 - nada fora do escopo da task foi alterado (`git diff --stat`)
 

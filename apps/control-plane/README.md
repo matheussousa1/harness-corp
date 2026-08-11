@@ -34,7 +34,7 @@ tests/
 ## Comandos
 
 ```bash
-make check
+just check
 ```
 
 Estado: não iniciado. Nasce em `specs/SPEC-000-fundacao-e-gates.md`.

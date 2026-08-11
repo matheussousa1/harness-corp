@@ -5,7 +5,7 @@ info:
   description: |
     Fonte da verdade do contrato entre desktop, painel admin e Control Plane.
     Tipos TS e modelos Pydantic são GERADOS deste arquivo — nunca escritos à mão.
-    Mudou aqui? Rode `make contract`. O CI falha se houver diff não commitado.
+    Mudou aqui? Rode `just contract`. O CI falha se houver diff não commitado.
 
 servers:
   - url: https://control-plane.exemplo.local

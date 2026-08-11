@@ -1,0 +1,9 @@
+# Atalho. A instrução real está em prompts/workflows/measure.md (fonte única).
+description = "Fecha a Fase 4: registra custo, tokens, tempo e retro"
+prompt = """
+Leia o arquivo `prompts/workflows/measure.md` do repositório e siga por completo.
+
+**{ARGS}** = {{args}}
+
+As regras gerais do projeto estão em `AGENTS.md`. Leia antes de agir.
+"""

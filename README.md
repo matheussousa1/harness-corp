@@ -50,11 +50,17 @@ Detalhamento: [`docs/02-arquitetura/modelo-de-seguranca.md`](docs/02-arquitetura
 ## Mapa do repositório
 
 ```
+AGENTS.md          regras para QUALQUER agente de IA (fonte única)
+CLAUDE.md          ponteiro para AGENTS.md + específico do Claude Code
+GEMINI.md          ponteiro para AGENTS.md + específico do Gemini CLI
+prompts/
+  workflows/       instruções de cada etapa do fluxo (fonte única)
+  roles/           definição dos papéis: spec-writer, implementor, verifier
 docs/
   00-pesquisa/     pesquisa de mercado que fundamenta as decisões
   01-produto/      visão, escopo, personas, glossário
   02-arquitetura/  visão geral, modelo de segurança, ADRs
-  03-processo/     metodologia spec-driven, DoR/DoD, pipeline, agent experience
+  03-processo/     metodologia spec-driven, DoR/DoD, pipeline, AX, multi-agente
   04-metricas/     framework de métricas da Fase 4
   05-runbooks/     operação
 specs/             SPEC-XXX (contrato executável por feature) + templates
@@ -63,9 +69,9 @@ pipeline/          definição dos grafos LangGraph do harness de desenvolviment
 apps/
   control-plane/   backend (FastAPI + LangGraph)
   desktop/         cliente Electron
-packages/contracts/ OpenAPI + JSON Schemas compartilhados
-metrics/           saída bruta das execuções (custo/tokens/tempo)
-.claude/           harness DESTE repositório: agentes, comandos, skills, hooks
+packages/contracts/ OpenAPI + tipos gerados (generated/, nunca editado à mão)
+metrics/           custo/tokens/tempo por SPEC
+.claude/ .gemini/ .opencode/   atalhos de cada ferramenta → prompts/
 ```
 
 ## Como o trabalho anda aqui
@@ -76,6 +82,15 @@ SPEC  →  PLAN  →  TASKS  →  IMPLEMENT  →  VERIFY  →  MEASURE
 
 Nenhuma linha de código de feature entra sem SPEC aprovada.
 Leia [`docs/03-processo/metodologia.md`](docs/03-processo/metodologia.md).
+
+O fluxo roda igual em Claude Code, Codex, Gemini CLI e opencode —
+ver [`docs/03-processo/multi-agente.md`](docs/03-processo/multi-agente.md).
+
+Verificação, um comando só (requer [`just`](https://github.com/casey/just)):
+
+```bash
+just check
+```
 
 ## Estado atual
 

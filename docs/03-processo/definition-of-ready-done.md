@@ -19,7 +19,7 @@ Falhou um item ⇒ volta para o Spec Writer. Não começa implementação.
 ## Definition of Done — uma task está pronta quando…
 
 - [ ] Critérios de aceite da task verificados **com evidência colada** (saída real de comando)
-- [ ] `make check` verde (lint + types + testes + validação de contrato)
+- [ ] `just check` verde (lint + types + testes + validação de contrato)
 - [ ] Testes novos cobrem o caminho feliz **e** o de falha
 - [ ] Nenhuma invariante de segurança violada (gate de CI passou)
 - [ ] `git diff --stat` só mostra arquivos previstos no plano

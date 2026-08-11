@@ -1,0 +1,9 @@
+# Atalho. A instrução real está em prompts/workflows/verify.md (fonte única).
+description = "Verifica uma task ou SPEC contra os critérios de aceite"
+prompt = """
+Leia o arquivo `prompts/workflows/verify.md` do repositório e siga por completo.
+
+**{ARGS}** = {{args}}
+
+As regras gerais do projeto estão em `AGENTS.md`. Leia antes de agir.
+"""

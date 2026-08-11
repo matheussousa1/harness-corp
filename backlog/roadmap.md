@@ -9,7 +9,7 @@ máquina, com custo medido e failover funcionando.
 
 | SPEC | Entrega |
 |---|---|
-| SPEC-000 | Monorepo, `make check`, CI com 5 gates de segurança |
+| SPEC-000 | Monorepo, `just check`, CI com 5 gates de segurança |
 | SPEC-001 | `POST /v1/chat` streaming, 2 providers, failover, ledger de custo |
 
 **Critério de saída:** `curl` no `/v1/chat` responde em streaming; teste de CI prova

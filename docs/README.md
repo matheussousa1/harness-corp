@@ -15,8 +15,12 @@ Ordem de leitura para quem (ou o que) chega agora:
 | 9 | [`03-processo/definition-of-ready-done.md`](03-processo/definition-of-ready-done.md) | vai aprovar ou verificar algo |
 | 10 | [`03-processo/pipeline.md`](03-processo/pipeline.md) | vai orquestrar agentes |
 | 11 | [`03-processo/agent-experience.md`](03-processo/agent-experience.md) | vai adicionar peça ao harness |
-| 12 | [`04-metricas/framework.md`](04-metricas/framework.md) | vai fechar uma entrega |
-| 13 | [`05-runbooks/`](05-runbooks/) | algo quebrou |
+| 12 | [`03-processo/multi-agente.md`](03-processo/multi-agente.md) | vai usar Codex, Gemini CLI ou opencode neste repo |
+| 13 | [`04-metricas/framework.md`](04-metricas/framework.md) | vai fechar uma entrega |
+| 14 | [`05-runbooks/`](05-runbooks/) | algo quebrou |
+
+> Regras para agentes de IA: **`AGENTS.md`** na raiz (fonte única).
+> `CLAUDE.md` e `GEMINI.md` só apontam para ele.
 
 ## ADRs
 
@@ -27,6 +31,7 @@ Ordem de leitura para quem (ou o que) chega agora:
 | [0003](02-arquitetura/adr/ADR-0003-memoria-local-e-rag.md) | Memória local `sqlite-vec` + RAG corporativo server-side |
 | [0004](02-arquitetura/adr/ADR-0004-electron.md) | Electron para o app desktop |
 | [0005](02-arquitetura/adr/ADR-0005-backend-first-contract-first.md) | Backend-first e contract-first |
+| [0006](02-arquitetura/adr/ADR-0006-just-como-command-runner.md) | `just` como command runner (em vez de `make` + `make.ps1`) |
 
 ## Onde as coisas ficam
 

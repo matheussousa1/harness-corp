@@ -112,7 +112,7 @@ Quebra compatibilidade? ( ) sim  ( ) não — se sim, plano de versionamento:
 
 | ID | Task | Depende de | Paralelizável | Verificação |
 |---|---|---|---|---|
-| T-01 | | — | não | `make check && pytest -k …` |
+| T-01 | | — | não | `just check && pytest -k …` |
 | T-02 | | T-01 | sim | |
 
 ---

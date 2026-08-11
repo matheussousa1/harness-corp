@@ -1,0 +1,9 @@
+# Atalho. A instrução real está em prompts/workflows/tasks.md (fonte única).
+description = "Fatia o plano de uma SPEC em tasks verificáveis"
+prompt = """
+Leia o arquivo `prompts/workflows/tasks.md` do repositório e siga por completo.
+
+**{ARGS}** = {{args}}
+
+As regras gerais do projeto estão em `AGENTS.md`. Leia antes de agir.
+"""

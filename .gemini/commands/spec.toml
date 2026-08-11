@@ -1,0 +1,9 @@
+# Atalho. A instrução real está em prompts/workflows/spec.md (fonte única).
+description = "Cria uma nova SPEC a partir de uma ideia"
+prompt = """
+Leia o arquivo `prompts/workflows/spec.md` do repositório e siga por completo.
+
+**{ARGS}** = {{args}}
+
+As regras gerais do projeto estão em `AGENTS.md`. Leia antes de agir.
+"""

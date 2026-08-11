@@ -22,12 +22,12 @@ E a saída aponta arquivo e linha
 ```
 
 ### US-002 · Verificação de um comando
-**Como** Dev do harness, **quero** um único `make check`, **para** que humano e agente
+**Como** Dev do harness, **quero** um único `just check`, **para** que humano e agente
 verifiquem o trabalho do mesmo jeito.
 
 ```gherkin
 Dado o repositório limpo
-Quando eu executar "make check"
+Quando eu executar "just check"
 Então o exit code é 0
 E a execução leva menos de 90 segundos
 ```

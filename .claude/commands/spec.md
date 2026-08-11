@@ -1,15 +1,12 @@
 ---
-description: Cria uma nova SPEC a partir de uma ideia, usando o agente spec-writer
+description: Cria uma nova SPEC a partir de uma ideia
 argument-hint: <descrição da feature>
 ---
 
-Crie uma nova SPEC para: **$ARGUMENTS**
+Leia `prompts/workflows/spec.md` e siga por completo.
 
-1. Descubra o próximo número livre em `specs/` (`SPEC-XXX`).
-2. Use o agente `spec-writer`.
-3. A SPEC deve seguir `specs/_template/SPEC-TEMPLATE.md` na íntegra.
-4. Só preencha as seções 1–8 (o *quê*). **Não** escreva o Plano nem as Tasks ainda —
-   isso é `/plan` e `/tasks`, depois que eu revisar o escopo.
-5. Ao final, liste as perguntas em aberto que precisam de decisão minha.
+**{ARGS}** = $ARGUMENTS
 
-Não escreva código.
+Este arquivo é só um atalho. A instrução real, compartilhada por todas as ferramentas
+de IA do projeto, está em `prompts/workflows/spec.md`. Não duplique regra aqui —
+edite lá.

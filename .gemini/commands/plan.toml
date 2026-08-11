@@ -1,0 +1,9 @@
+# Atalho. A instrução real está em prompts/workflows/plan.md (fonte única).
+description = "Escreve a seção Plano de uma SPEC aprovada em escopo"
+prompt = """
+Leia o arquivo `prompts/workflows/plan.md` do repositório e siga por completo.
+
+**{ARGS}** = {{args}}
+
+As regras gerais do projeto estão em `AGENTS.md`. Leia antes de agir.
+"""

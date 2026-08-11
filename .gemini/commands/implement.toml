@@ -1,0 +1,9 @@
+# Atalho. A instrução real está em prompts/workflows/implement.md (fonte única).
+description = "Executa uma task de uma SPEC no papel implementor"
+prompt = """
+Leia o arquivo `prompts/workflows/implement.md` do repositório e siga por completo.
+
+**{ARGS}** = {{args}}
+
+As regras gerais do projeto estão em `AGENTS.md`. Leia antes de agir.
+"""

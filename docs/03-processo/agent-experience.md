@@ -32,7 +32,7 @@ O agente lê o contrato em vez de inferir o formato do payload lendo 5 handlers.
 ### 3. Um comando de verificação
 
 ```bash
-make check
+just check
 ```
 
 Não `npm run lint && cd .. && pytest -k ... && ...`. Um comando, saída clara,
