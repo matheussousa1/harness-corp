@@ -285,3 +285,4 @@ Então vejo cada nó do grafo, cada chamada de tool, tokens e custo por passo
 | US-096 | SSO/SAML corporativo | E13 |
 | US-097 | Cache semântico no gateway | E1 |
 | US-098 | Roteamento por custo (modelo mais barato que atende) | E1 |
+| US-099 | `docs/03-processo/como-escrever-testes.md` — convenções de teste dos dois lados, escrito **depois** de SPEC-000 T-02/T-03, quando houver testes reais para descrever. Referência única, nunca repetida nos tutoriais de `validacao/` | E0 |
