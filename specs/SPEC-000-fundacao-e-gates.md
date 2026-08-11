@@ -187,15 +187,15 @@ ser "só esqueleto de pastas".
 
 # Execução
 
-| Task | Status | Implementor | Verify | Notas |
-|---|---|---|---|---|
-| T-01 | pendente | | | |
-| T-02 | pendente | | | |
-| T-03 | pendente | | | |
-| T-04 | pendente | | | |
-| T-05 | pendente | | | |
-| T-06 | pendente | | | |
-| T-07 | pendente | | | |
+| Task | Status | Implementor | Verify | Validação manual | Notas |
+|---|---|---|---|---|---|
+| T-01 | done | implementor | | pendente (regra criada depois) | justfile + toolchains (control-plane py3.12/pytest/ruff/mypy, desktop node/vitest/tsc). `just` via cargo install (choco sem admin). `just check` exit 0. |
+| T-02 | pendente | | | `validacao/SPEC-000-T-02.md` | |
+| T-03 | pendente | | | `validacao/SPEC-000-T-03.md` | |
+| T-04 | pendente | | | `validacao/SPEC-000-T-04.md` | |
+| T-05 | pendente | | | `validacao/SPEC-000-T-05.md` | |
+| T-06 | pendente | | | `validacao/SPEC-000-T-06.md` | |
+| T-07 | pendente | | | `validacao/SPEC-000-T-07.md` | |
 
 ---
 

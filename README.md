@@ -70,6 +70,7 @@ apps/
   control-plane/   backend (FastAPI + LangGraph)
   desktop/         cliente Electron
 packages/contracts/ OpenAPI + tipos gerados (generated/, nunca editado à mão)
+validacao/         tutorial de teste manual por task (para aprovar e para estudar)
 metrics/           custo/tokens/tempo por SPEC
 .claude/ .gemini/ .opencode/   atalhos de cada ferramenta → prompts/
 ```

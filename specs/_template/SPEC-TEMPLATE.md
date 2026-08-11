@@ -119,8 +119,9 @@ Quebra compatibilidade? ( ) sim  ( ) não — se sim, plano de versionamento:
 
 # Execução (preenchido durante)
 
-| Task | Status | Implementor | Verify | Notas |
-|---|---|---|---|---|
+| Task | Status | Implementor | Verify | Validação manual | Notas |
+|---|---|---|---|---|---|
+| T-01 | pendente | | | `validacao/SPEC-XXX-T-01.md` | |
 
 ---
 

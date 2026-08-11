@@ -44,8 +44,8 @@ stateDiagram-v2
 | Spec | agente `spec-writer` | ideia + docs de produto | `specs/SPEC-XXX.md` | Definition of Ready completo |
 | Plan | `spec-writer` + humano | SPEC | seção Plano | humano aprova |
 | Tasks | `spec-writer` | Plano | seção Tasks | toda task ≤ 1 dia e verificável |
-| Implement | `implementor` (1..N) | uma task | diff + testes | `just check` verde |
-| Verify | `verifier` | task + diff | relatório com evidência | todos os critérios com prova |
+| Implement | `implementor` (1..N) | uma task | diff + testes + `validacao/SPEC-XXX-T-nn.md` | `just check` verde e tutorial escrito |
+| Verify | `verifier` | task + diff | relatório com evidência | todos os critérios com prova **e** tutorial executado verbatim |
 | Measure | script | logs da execução | `metrics/SPEC-XXX.json` | — |
 
 ## Paralelismo
@@ -71,6 +71,27 @@ Regras para não virar caos:
 
 Estourar teto **não** é falha do agente: é sinal de que a task estava mal fatiada ou
 a SPEC ambígua. Vira ajuste de processo, registrado na retro da SPEC.
+
+## Aprovação humana e tutorial de validação
+
+Toda task termina com aprovação humana. Para que a aprovação seja verificação e não
+carimbo, o Implementor entrega junto um **tutorial de teste manual** em
+`validacao/SPEC-XXX-T-nn.md`.
+
+| Quem | Faz o quê |
+|---|---|
+| Implementor | Escreve o tutorial e **executa cada passo** antes de entregar |
+| Verifier | Executa o tutorial **verbatim**. Divergiu ⇒ REPROVADO |
+| Humano | Executa e aprova, sabendo o que está aprovando |
+
+Três razões, em ordem de peso: aprendizado (o projeto é base de estudo), aprovação
+informada, e detecção de entrega que só funciona na máquina de quem escreveu.
+
+A **prova pela negativa** — quebrar de propósito e confirmar que o sistema reclama —
+é obrigatória em toda task que entrega gate, validação ou regra de segurança. Teste
+que só passa não prova que o mecanismo está ligado.
+
+Detalhes e template: `validacao/README.md`.
 
 ## Gates automatizados (CI)
 

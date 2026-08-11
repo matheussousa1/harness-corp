@@ -90,6 +90,19 @@ just check
 (lint + typecheck + testes + validação de contrato — ADR-0006). Se você mudou código
 e não rodou `just check`, o trabalho não está pronto. `just --list` mostra os alvos.
 
+## Tutorial de validação manual
+
+Toda task entrega, junto do código, um passo a passo de teste manual em
+`validacao/SPEC-XXX-T-nn.md` (template em `validacao/_template.md`).
+
+Comando exato + saída esperada em cada passo. Prova pela negativa obrigatória quando
+a task entrega gate, validação ou regra de segurança. Quem implementa executa os
+passos antes de entregar; o Verifier executa **verbatim** e reprova se divergir.
+
+Motivo: o projeto é base de estudo, a aprovação humana precisa ser verificação e não
+carimbo, e tutorial que não reproduz denuncia código que só funciona na máquina de
+quem escreveu.
+
 ## Definition of Done
 
 `docs/03-processo/definition-of-ready-done.md`. Resumo: critérios de aceite da SPEC

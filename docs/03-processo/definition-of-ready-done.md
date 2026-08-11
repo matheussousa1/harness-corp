@@ -28,6 +28,8 @@ Falhou um item ⇒ volta para o Spec Writer. Não começa implementação.
 - [ ] ADR criado se houve decisão arquitetural nova
 - [ ] Métricas da execução registradas em `metrics/`
 - [ ] Sem TODO órfão — todo TODO tem item em `backlog/`
+- [ ] `validacao/SPEC-XXX-T-nn.md` existe, com comando exato, saída esperada e prova
+      pela negativa — e foi **executado verbatim** pelo Verifier, não só lido
 - [ ] Verificada por um Verifier diferente de quem implementou
 
 ## Definition of Done — uma SPEC está pronta quando…

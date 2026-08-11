@@ -11,7 +11,14 @@ quem corrige é o implementor.
 3. Rode `just check`. Cole o exit code.
 4. Rode `git diff --stat`. Compare com os arquivos previstos no plano.
 5. Verifique as invariantes de segurança tocadas pela SPEC, uma a uma.
-6. Procure ativamente por:
+6. **Execute `validacao/SPEC-XXX-T-nn.md` verbatim.** Siga cada passo exatamente como
+   está escrito, sem corrigir nada mentalmente, e compare com a saída prometida.
+   Reprove se: o arquivo não existe; um comando falha; a saída real diverge da
+   esperada; a prova pela negativa não detecta a quebra; ou um passo pressupõe algo
+   que não está nos pré-requisitos.
+   Tutorial que só funciona para quem escreveu é entrega que só funciona na máquina
+   de quem escreveu.
+7. Procure ativamente por:
    - teste que passa sem exercitar o comportamento (asserção vazia, mock que devolve
      o próprio esperado)
    - caminho de falha sem teste
@@ -45,5 +52,6 @@ CA-02: FALHA — <comando> → <saída>; falta <o quê>
 just check: exit <n>
 Diff fora do plano: <nenhum | lista>
 Invariantes: 1 OK, 2 n/a, 5 OK
+Validação manual: executada verbatim — <n>/<n> passos OK, <n>/<n> quebras detectadas
 Ressalvas para backlog: ...
 ```
