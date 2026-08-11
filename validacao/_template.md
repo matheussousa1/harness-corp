@@ -61,6 +61,9 @@ Rode de novo o passo N. **Esperado:** falha, com esta mensagem:
 
 ## 4. Checklist de aprovação
 
+> Entregue **em branco**. Quem executa marca. Checklist pré-marcada pelo autor é
+> carimbo, não verificação — é exatamente o que este documento existe para evitar.
+
 - [ ] Todos os passos da seção 2 deram a saída esperada
 - [ ] Todas as quebras da seção 3 foram detectadas
 - [ ] O repositório voltou ao estado limpo (`git status` sem alterações não previstas)
@@ -76,6 +79,16 @@ Rode de novo o passo N. **Esperado:** falha, com esta mensagem:
 
 ## 6. Como desfazer tudo
 
+> **Proibido nesta seção:** `git clean -fdx`, `git checkout -- .`, `git reset --hard`
+> e qualquer comando que apague por varredura. Enquanto a task não está commitada, os
+> arquivos da entrega são *untracked* — varredura apaga a própria task, e comando na
+> raiz atinge trabalho de outras tasks.
+>
+> Liste os arquivos **explicitamente**, um a um.
+
 ```bash
-<comando para voltar ao estado anterior à task>
+<rm -f / rm -rf de cada arquivo e pasta que ESTA task criou>
 ```
+
+Como conferir antes de rodar: `git status --short` deve listar exatamente esses
+arquivos. Listou outra coisa? Pare — tem trabalho de outra task no meio.
