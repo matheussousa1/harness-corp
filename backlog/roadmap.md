@@ -38,7 +38,8 @@ corretamente.
 
 | SPEC | Entrega |
 |---|---|
-| SPEC-005 | Desktop Electron: auth, chat streaming, seletor de modelos permitidos, hardening |
+| **spike** | **1 dia, antes da SPEC-005: Electron vs Tauri decidido com evidência própria** (ADR-0004, revisão de 2026-08-12). Prova `sqlite-vec`, fallback, sidecar MCP e keychain em Tauri v2 |
+| SPEC-005 | Desktop: auth, chat streaming, seletor de modelos permitidos, hardening — no framework que o spike apontar |
 | SPEC-006 | Memória local SQLite + `sqlite-vec` com fallback |
 
 **Critério de saída:** instalar o app numa máquina limpa, autenticar, conversar,
