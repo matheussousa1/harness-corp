@@ -38,8 +38,7 @@ corretamente.
 
 | SPEC | Entrega |
 |---|---|
-| **spike** | **1 dia, antes da SPEC-005: Electron vs Tauri decidido com evidência própria** (ADR-0004, revisão de 2026-08-12). Prova `sqlite-vec`, fallback, sidecar MCP e keychain em Tauri v2 |
-| SPEC-005 | Desktop: auth, chat streaming, seletor de modelos permitidos, hardening — no framework que o spike apontar |
+| SPEC-005 | Desktop **Electron**: auth, chat streaming, seletor de modelos permitidos, hardening |
 | SPEC-006 | Memória local SQLite + `sqlite-vec` com fallback |
 
 **Critério de saída:** instalar o app numa máquina limpa, autenticar, conversar,
@@ -67,6 +66,25 @@ ver, e pede confirmação antes de uma ação de escrita — sobrevivendo a rest
 
 **Critério de saída:** dado um `request_id`, ver o traço completo com custo por passo;
 relatório mensal com erro < 3% vs. fatura.
+
+---
+
+## V5 — "A arquitetura se prova" (E9)
+
+Segundo cliente desktop, em **Tauri**, contra o mesmo `openapi.yaml`.
+
+Não é retrabalho nem troca de framework: é o **teste** da afirmação central do
+ADR-0002 — *"o desktop nunca define regra de negócio"*.
+
+| SPEC | Entrega |
+|---|---|
+| SPEC-010 | Cliente Tauri: auth, chat streaming, memória local com `sqlite-vec` em Rust, sidecar MCP, keychain |
+
+**Critério de saída (binário):** `git log` da SPEC mostra **zero commits em
+`apps/control-plane/`**. Precisou mudar o servidor ⇒ regra de negócio vazou para o
+cliente ⇒ vira ADR explicando o quê e por quê.
+
+Ver `docs/02-arquitetura/adr/ADR-0004-electron.md`, revisão de 2026-08-12.
 
 ---
 

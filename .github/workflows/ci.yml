@@ -53,3 +53,6 @@ jobs:
       #           de política — teste enumera as rotas registradas
       #   Gate 5  configuração do Electron endurecida
       #           (contextIsolation/nodeIntegration/sandbox)
+      #   Gate 6  isolamento do cliente: nada em apps/desktop/src/core/** importa
+      #           'electron' (RF-09). Mantém o segundo cliente da E9 barato — ver
+      #           docs/02-arquitetura/adr/ADR-0004-electron.md

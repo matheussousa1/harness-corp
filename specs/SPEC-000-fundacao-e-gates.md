@@ -47,6 +47,7 @@ colocar uma chave no cliente.
 | RF-06 | `apps/control-plane` sobe com `GET /health` respondendo `{"status":"ok"}` |
 | RF-07 | `apps/desktop` builda com `contextIsolation: true`, `nodeIntegration: false`, `sandbox: true` |
 | RF-08 | Tipos TS e modelos Pydantic são **gerados** do `openapi.yaml`; CI falha se houver diff não commitado |
+| RF-09 | Gate falha o build se qualquer arquivo em `apps/desktop/src/core/**` importar `electron` (direta ou transitivamente) |
 
 ## 4. Requisitos não-funcionais
 
@@ -97,6 +98,7 @@ Quebra compatibilidade? Não (primeira versão).
 | CA-05 | `/health` responde | `curl -s localhost:8000/health \| jq -e '.status=="ok"'` |
 | CA-06 | Contrato dessincronizado quebra o build | editar `openapi.yaml` sem regenerar → CI falha no job `contract` |
 | CA-07 | Config insegura do Electron quebra o build | trocar para `nodeIntegration: true` → teste `test_electron_hardening` falha |
+| CA-08 | `import 'electron'` dentro de `src/core/` quebra o build | plantar `import { app } from 'electron'` em `apps/desktop/src/core/x.ts` → job `security-invariants` falha |
 
 ## 8. Riscos
 
@@ -172,8 +174,8 @@ Nada em produção. Reverter o commit.
 |---|---|---|---|---|---|
 | T-01 | `justfile` + **os dois toolchains funcionando**: venv/pytest/ruff/mypy no control-plane, node/vitest/tsc no desktop. Um teste-canário trivial de cada lado, que passa. | — | 1 | não | `just check` → exit 0, com 1 teste Python e 1 teste TS rodando |
 | T-02 | `apps/control-plane/src` FastAPI + `/health` | T-01 | 2 | sim | `pytest tests/test_health.py` |
-| T-03 | `apps/desktop/src` Electron+Vite+React com hardening | T-01 | 2 | sim | `test_electron_hardening` |
-| T-05 | `scripts/security_invariants.py` + suíte | T-01 | 2 | sim | suíte verde; CA-02..CA-04 |
+| T-03 | `apps/desktop/src` Electron+Vite+React com hardening. **A lógica de cliente nasce em `src/core/`, sem importar `electron`** — a camada Electron (`main/`, `preload/`) fica fina, para o segundo cliente da E9 ser barato (ADR-0004) | T-01 | 2 | sim | `test_electron_hardening` |
+| T-05 | `scripts/security_invariants.py` + suíte (inclui o gate de isolamento de `src/core/`, RF-09) | T-01 | 2 | sim | suíte verde; CA-02..CA-04, CA-08 |
 | T-04 | `generate.py` → `packages/contracts/generated/` (Pydantic + TS) | T-01 | 3 | sim | `just contract` sem diff |
 | T-07 | `metrics/collect.py` | T-01 | 3 | sim | gera JSON válido do schema |
 | T-06 | `.github/workflows/ci.yml` com os 5 jobs | T-02..T-05, T-07 | 4 | não | CI verde no PR |

@@ -11,6 +11,7 @@
 | **E6** | KB corporativa (RAG) | Agente responde com o conhecimento da empresa, respeitando ACL | SPEC-007 | Rascunho |
 | **E7** | Tools via MCP + aprovação | Agente age em sistemas externos, sob política e confirmação | SPEC-008 | Rascunho |
 | **E8** | Observabilidade e custo | Custo, tokens e traço visíveis por workspace/usuário/conversa | SPEC-009 | Rascunho |
+| **E9** | Segundo cliente (Tauri) | **Provar** que o contrato é client-agnostic: cliente novo, servidor intocado | SPEC-010 | Rascunho |
 
 ## Dependências
 
@@ -23,7 +24,14 @@ flowchart LR
   E2 --> E6
   E2 --> E7
   E1 --> E8
+  E5 --> E9
+  E7 --> E9
 ```
+
+**E9 não é retrabalho.** É o teste da afirmação do ADR-0002: se o desktop realmente
+só renderiza o que o Control Plane autoriza, um cliente novo se constrói contra o
+mesmo contrato sem tocar o servidor. Aprovada com **zero commits em
+`apps/control-plane/`**; qualquer mudança lá é regra de negócio que vazou.
 
 **Caminho crítico:** E0 → E1 → E2 → E4. É a fatia vertical que prova o produto:
 colaborador conversa, pelo desktop, com um modelo que a política permitiu e o budget

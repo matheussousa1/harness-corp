@@ -1,6 +1,7 @@
 # ADR-0004 — Electron para o app desktop
 
-- **Status:** Aceito **provisoriamente** — revisão agendada para o início da SPEC-005
+- **Status:** Aceito — Electron é o **primeiro** cliente; Tauri vem como **segundo**
+  cliente na E9, como prova de arquitetura
 - **Data:** 2026-08-10 · **Revisado:** 2026-08-12
 
 ## Contexto
@@ -100,26 +101,68 @@ decisão fica muito mais aberta.
   Teams, Chrome e Excel não é cosmético. Foi tratado como se fosse.
 - **Valor de portfólio.** Tauri lê melhor que Electron em 2026, e o projeto é vitrine.
 
-### Decisão: adiar com critério, não manter por inércia
+### Decisão: os dois, em ordem — e o segundo vira prova de arquitetura
 
-Não se troca de framework por benchmark de terceiro — seria contradizer a tese de
-medição deste projeto. Também não se mantém a escolha sem reexaminar.
+A pergunta estava mal colocada. Não é "Electron **ou** Tauri": é **em que ordem**, e
+para provar o quê.
 
-**Spike obrigatório de 1 dia (timebox rígido) no início da SPEC-005**, antes de
-escrever qualquer código de desktop. Provar em Tauri v2:
+O ADR-0002 afirma que o desktop nunca define regra de negócio — que ele só renderiza o
+que o Control Plane autoriza. Hoje isso é uma **promessa**. Um segundo cliente,
+construído contra o mesmo `openapi.yaml` **sem tocar o servidor**, é a **prova**.
+E se o servidor precisar mudar, descobrimos que regra de negócio vazou para o cliente —
+achado que nenhum teste unitário pega.
 
-| # | Prova | Passou se |
-|---|---|---|
-| 1 | Abrir SQLite com `sqlite-vec` carregado e rodar uma busca vetorial | consulta retorna resultado, nos 3 SOs alvo |
-| 2 | Fallback brute-force quando a extensão não carrega | mesma interface, resultado correto |
-| 3 | Spawnar um servidor MCP local via sidecar e conversar com ele | handshake e uma chamada de tool |
-| 4 | Ler e gravar credencial no keychain do SO | round-trip |
+| | Cliente | Quando | Papel |
+|---|---|---|---|
+| 1º | **Electron** | SPEC-005 (V2) | Cliente de referência. Prova o produto ponta a ponta |
+| 2º | **Tauri** | **E9**, depois do contrato estável | Prova que o contrato é client-agnostic |
 
-**Migra para Tauri** se as quatro provas passarem dentro do timebox.
-**Mantém Electron** se alguma travar — e aí o ADR se confirma pelo motivo certo,
-com evidência própria em vez de premissa herdada.
+**Por que Electron primeiro:**
+- O Control Plane é a parte cara e arriscada; o desktop existe para prová-lo.
+- `sqlite-vec` é trivial em Node e tem atrito em Rust. Resolver o E5 no caminho fácil
+  isola o problema: no Tauri sobra o transporte, com o comportamento correto já conhecido.
+- Curva de Rust durante o V2 travaria o roadmap inteiro.
+- **Um segundo cliente só prova algo se o contrato já estiver estável.** Em paralelo,
+  não provaria nada.
 
-Registrar o resultado em `metrics/` e emendar este ADR com o veredito.
+**Por que Tauri como segundo e não como descarte:** os argumentos a favor dele seguem
+válidos — deny-by-default em tempo de compilação (que é a invariante 5 expressa pelo
+framework), RAM e instalador menores, e melhor leitura como material didático em
+repositório aberto.
+
+### Critério de aprovação da E9 (binário)
+
+> A SPEC do cliente Tauri é aprovada se, ao terminar, `git log` mostrar **zero commits
+> em `apps/control-plane/`**.
+
+Precisou mudar o servidor? Não é falha da task — é falha da arquitetura. Vira ADR
+explicando o que vazou e por quê.
+
+### O que precisa existir AGORA para a E9 ser barata
+
+O ADR já dizia que a lógica do cliente fica em `apps/desktop/src/core/` sem importar
+`electron`. Comentário não impede ninguém. Vira **gate de CI antes do T-03 escrever a
+primeira linha**:
+
+```
+nenhum arquivo em apps/desktop/src/core/** pode importar 'electron'
+```
+
+Sem esse gate, na hora da E9 tudo estará entrelaçado e o segundo cliente custa 5× mais.
+É a diferença entre a ideia funcionar e virar frustração.
+
+### Spike cancelado
+
+O spike de 1 dia existia para escolher entre os dois frameworks. Não há mais escolha a
+fazer agora. O risco do `sqlite-vec` em Rust continua real e passa a ser escopo da E9 —
+lá ele é conteúdo de estudo, não bloqueio de roadmap.
+
+### Ressalva que sobrevive à decisão
+
+Adotar Tauri na E9 **não** dispensará o gate de hardening: parte dos defaults do próprio
+Tauri trabalha contra as garantias que ele promete. O job `security-invariants` continua
+obrigatório nos dois clientes — muda o que ele testa (capabilities declaradas em vez de
+`webPreferences`), não se ele existe.
 
 ## Fontes da revisão
 
